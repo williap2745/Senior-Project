@@ -30,7 +30,7 @@ app.use(passport.session())
 app.use(methodOverride('_method'))
 
 app.get('/', checkAuthenticated, (req, res) => {
-    res.render('index.ejs', {name: req.user.name}) //sends the name here to the site
+    res.render('Home.ejs', {name: req.user.name}) //sends the name here to the site
 })
 
 app.get('/login', checkNotAuthenticated, (req, res) => {
@@ -43,8 +43,6 @@ app.post('/login', checkNotAuthenticated, passport.authenticate('local',
     failureRedirect: '/login',
     failureFlash: true
     }))
-
-
 
 app.get('/register', checkNotAuthenticated, (req, res) => {
     res.render('register.ejs', {name: 'Perry'}) //sends the name here to the site
@@ -65,6 +63,10 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
     }
     console.log(users)
 })
+
+app.get('/addTask', checkAuthenticated, (req, res) => {
+    res.render('addTask.ejs', { name: req.user.name }); // Render addTask.ejs
+});
 
 app.delete('/logout', (req, res) => {
     req.logOut((err) => {
