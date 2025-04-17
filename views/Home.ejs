@@ -1,4 +1,57 @@
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.17/index.global.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.17/main.min.css" rel="stylesheet">
+</head>
+
 <h1>Hi <%= name %> welcome to your Dashboard</h1>
+
+<p>Here are your tasks:</p>
+<div id="calendar"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log("Calendar script loaded");
+        // Initialize the calendar
+        const calendarEl = document.getElementById('calendar');
+        if (!calendarEl) {
+            console.error("Calendar element not found");
+            return;
+        }
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth', // Month view
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            events: [
+                {
+                    title: 'Task 1',
+                    start: '2025-04-20', // Example date
+                    end: '2025-04-22'
+                },
+                {
+                    title: 'Task 2',
+                    start: '2025-04-25',
+                    allDay: true
+                }
+            ]
+        });
+
+        calendar.render();
+    });
+</script>
+
+<style>
+    #calendar {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+</style>
+
+
+<h1>Hi <%= name %> welcome to your Dashboard</h1>
+
 
 <!-- New Add Task Button -->
 <form action="/addTask" method="GET">
