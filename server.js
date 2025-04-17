@@ -10,12 +10,20 @@ const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
 const methodOverride = require('method-override')
+const mongoose = require('mongoose');
+const {User} = require('./models/User'); // Import the User model
 
-const initalizePassport = require('./passport-config')
-initalizePassport(passport, email => users.find(user => user.email === email),
-    id => users.find(user => user.id === id))
+// Connect to MongoDB
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.error('Could not connect to MongoDB:', err));
 
-const users = []
+const initializePassport = require('./passport-config');
+initializePassport(
+    passport,
+    async email => await User.findOne({ email: email }), // Fetch user by email
+    async id => await User.findById(id) // Fetch user by ID
+);
 
 app.set('view-engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
@@ -30,6 +38,7 @@ app.use(passport.session())
 app.use(methodOverride('_method'))
 
 app.get('/', checkAuthenticated, (req, res) => {
+    console.log(req.user)
     res.render('Home.ejs', {name: req.user.name}) //sends the name here to the site
 })
 
@@ -49,20 +58,19 @@ app.get('/register', checkNotAuthenticated, (req, res) => {
 })
 
 app.post('/register', checkNotAuthenticated, async (req, res) => {
-    try{
-        const hashedPassword = await bcrypt.hash(req.body.password, 10)
-        users.push({
-            id: Date.now().toString(),
+    try {
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        const user = new User({
             name: req.body.Name,
             email: req.body.Email_Address,
             password: hashedPassword
-        })
-        res.redirect('/login')
+        });
+        await user.save(); // Save user to the database
+        res.redirect('/login');
     } catch {
-        res.redirect('/register')
+        res.redirect('/register');
     }
-    console.log(users)
-})
+});
 
 app.get('/addTask', checkAuthenticated, (req, res) => {
     res.render('addTask.ejs', { name: req.user.name }); // Render addTask.ejs
