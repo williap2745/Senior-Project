@@ -76,6 +76,10 @@ app.get('/addTask', checkAuthenticated, (req, res) => {
     res.render('addTask.ejs', { name: req.user.name }); // Render addTask.ejs
 });
 
+app.get('/addTask', checkAuthenticated, (req, res) => {
+    res.render('addTask.ejs', { name: req.user.name }); // Render addTask.ejs
+});
+
 app.delete('/logout', (req, res) => {
     req.logOut((err) => {
         if (err) {
