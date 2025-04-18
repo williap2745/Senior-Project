@@ -18,8 +18,20 @@ const taskSchema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true } // Reference to the User model
 }, { collection: 'Tasks' });
 
+
+const ClassScheduleSchema = new mongoose.Schema({
+    Title: { type: String, required: true },
+    StartDate: { type: Date, required: true }, 
+    EndDate: { type: Date, required: true },
+    Days: { type: [String], required: true }, // Array of days
+    StartTime: { type: String, required: true }, // Time in HH:MM format
+    EndTime: { type: String, required: true }, // Time in HH:MM format
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true } // Reference to the User model
+}, { collection: 'ClassSchedule' });
+
 // Export both models
 const User = mongoose.model('User', userSchema);
 const Task = mongoose.model('Task', taskSchema);
+const ClassSchedule = mongoose.model('ClassSchedule', ClassScheduleSchema);
 
-module.exports = { User, Task };
+module.exports = { User, Task, ClassSchedule };

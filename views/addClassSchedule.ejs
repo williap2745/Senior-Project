@@ -1,0 +1,51 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Class Schedule or Work Hours</title>
+    <link rel="stylesheet" href="/path/to/your/styles.css"> <!-- Optional: Add your CSS file -->
+</head>
+<body>
+    <h1>Add Class Schedule or Work Hours</h1>
+    <form action="/addtask/ClassSchedule" method="POST">
+        
+        <!-- Class Name -->
+        <label for="Title">Class Name:</label>
+        <input type="text" id="Title" name="Title" required>
+        <br>
+        <!-- Start Date -->
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" name="startDate" required>
+        <br>
+
+        <!-- End Date -->
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" name="endDate" required>
+        <br>
+
+        <!-- Days of the Week -->
+        <label for="days">Days You Attend:</label>
+        <div id="days">
+            <label><input type="checkbox" name="days[]" value="Monday"> Monday</label>
+            <label><input type="checkbox" name="days[]" value="Tuesday"> Tuesday</label>
+            <label><input type="checkbox" name="days[]" value="Wednesday"> Wednesday</label>
+            <label><input type="checkbox" name="days[]" value="Thursday"> Thursday</label>
+            <label><input type="checkbox" name="days[]" value="Friday"> Friday</label>
+            <label><input type="checkbox" name="days[]" value="Saturday"> Saturday</label>
+            <label><input type="checkbox" name="days[]" value="Sunday"> Sunday</label>
+        </div>
+        <br>
+
+        <!-- Start Time -->
+        <label for="startTime">Start Time:</label>
+        <input type="time" id="startTime" name="startTime" required>
+        <br>
+
+        <!-- End Time -->
+        <label for="endTime">End Time:</label>
+        <input type="time" id="endTime" name="endTime" required>
+        <br>
+
+        <!-- Submit Button -->
+        <button type="submit">Add Schedule</button>
+    </form>
+</body>
