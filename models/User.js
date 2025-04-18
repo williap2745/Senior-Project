@@ -18,6 +18,7 @@ const taskSchema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true } // Reference to the User model
 }, { collection: 'Tasks' });
 
+
 const ClassScheduleSchema = new mongoose.Schema({
     Title: { type: String, required: true },
     StartDate: { type: Date, required: true }, 

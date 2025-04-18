@@ -1,4 +1,5 @@
 <!-- Displaying Calender on Home page for view-->
+
 <head>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.17/index.global.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.17/main.min.css" rel="stylesheet">
@@ -25,9 +26,11 @@
                 center: 'title',
                 right: 'dayGridMonth,timeGridWeek,timeGridDay'
             },
+
             events: '/schedule/events', // URL to fetch events
             editable: false,
             selectable: true
+            
         });
 
         calendar.render();
@@ -40,6 +43,11 @@
         margin: 0 auto;
     }
 </style>
+
+
+<h1>Hi <%= name %> welcome to your Dashboard</h1>
+
+
 
 <!-- New Add Task Button -->
 <form action="/addTask" method="GET">

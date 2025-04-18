@@ -12,8 +12,10 @@ const session = require('express-session')
 const methodOverride = require('method-override')
 const mongoose = require('mongoose');
 const {User} = require('./models/User'); // Import the User model
+
 const {Task} = require('./models/User'); // Import the Task model
 const {ClassSchedule} = require('./models/User'); // Import the ClassSchedule model
+
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -78,6 +80,7 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
 app.get('/addTask', checkAuthenticated, (req, res) => {
     res.render('addTask.ejs', { name: req.user.name }); // Render addTask.ejs
 });
+
 
 app.get('/addTask/school', checkAuthenticated, async (req, res) => {
     res.render('addTaskSchool.ejs', { name: req.user.name }); // Render addTaskSchool.ejs
@@ -155,6 +158,9 @@ app.get('/schedule/events', checkAuthenticated, async (req, res) => {
     }
 });
 
+app.get('/addTask', checkAuthenticated, (req, res) => {
+    res.render('addTask.ejs', { name: req.user.name }); // Render addTask.ejs
+});
 
 
 app.delete('/logout', (req, res) => {
