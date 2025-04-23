@@ -1,0 +1,51 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add School Task</title>
+</head>
+<body>
+    <h1>Add School Task</h1>
+    <form action="/addTask/school" method="POST">
+        <!-- Task Title -->
+        <label for="Title">Task Title:</label>
+        <input type="text" id="Title" name="Title" required>
+        <br>        
+        <!-- Task Subject -->
+        <label for="Subject">Task Subject:</label>
+        <select id="Subject" name="Subject" required>
+            <option value="Math">Math</option>
+            <option value="Biology">Biology</option>
+            <option value="Chemistry">Chemistry</option>
+            <option value="History">History</option>
+            <option value="Criminal Justice">Criminal Justice</option>
+            <option value="Cybersecurity">Cybersecurity</option>
+            <option value="English">English</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="Engineering">Engineering</option>
+        </select>
+        <br>
+
+        <!-- Skill Level -->
+        <label for="Skill_Level">Skill Level (1-10):</label>
+        <input type="number" id="Skill_Level" name="Skill_Level" min="1" max="10" required>
+        <br>
+
+        <!-- Task Difficulty -->
+        <label for="Task_Difficulty">Task Difficulty (1-10):</label>
+        <input type="number" id="Task_Difficulty" name="Task_Difficulty" min="1" max="10" required>
+        <br>
+
+        <!-- Desired Grade -->
+        <label for="Grade">Desired Grade (60-100):</label>
+        <input type="number" id="Grade" name="Grade" min="60" max="100" required>
+        <br>
+
+        <!-- Due Date -->
+        <label for="dueDate">Due Date:</label>
+        <input type="date" id="dueDate" name="dueDate" required>
+        <br>
+
+        <!-- Submit Button -->
+        <button type="submit">Add Task</button>
+    </form>
+</body>

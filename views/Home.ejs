@@ -19,19 +19,19 @@
             return;
         }
         const calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth', // Month view
-            headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay'
-            },
-            events: '/schedule/events', // URL to fetch events
-            editable: false,
-            selectable: true
-        });
-
-        calendar.render();
+    initialView: 'dayGridMonth', // Month view
+    headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+    },
+    events: '/calendar/all', // URL to fetch events
+    editable: false, // Allow events to be dragged and resized
+    selectable: true, // Allow selecting time slots
     });
+    calendar.render();
+});
+
 </script>
 
 <style>
@@ -40,6 +40,29 @@
         margin: 0 auto;
     }
 </style>
+
+<!-- Displaying task from the task schema-->
+<!-- <body>
+    <div id="calendar"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const calendarEl = document.getElementById('calendar');
+
+            // Initialize FullCalendar
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                events: '/calendar', // Fetch events from the backend
+                eventClick: function (info) {
+                    alert(`Task: ${info.event.title}\nDaily Hours: ${info.event.extendedProps.dailyHours}`);
+                }
+            });
+
+            calendar.render();
+        });
+    </script>
+</body> -->
+
 
 <!-- New Add Task Button -->
 <form action="/addTask" method="GET">
