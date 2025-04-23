@@ -16,6 +16,7 @@ const {Task} = require('./models/User'); // Import the Task model
 const {ClassSchedule} = require('./models/User'); // Import the ClassSchedule model
 const {DailyTask} = require('./models/User'); // Import the DailyTask model
 
+
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connected to MongoDB'))
@@ -177,6 +178,7 @@ app.get('/schedule/events', checkAuthenticated, async (req, res) => {
             }).flat();
         });
         console.log('Class Schedule Events:', events); // Debugging
+
         // Send the events as JSON
         res.json(events);
     } catch (error) {
@@ -522,6 +524,7 @@ app.post('/calendar/update', checkAuthenticated, async (req, res) => {
         res.status(500).send('An error occurred while updating the event');
     }
 });
+
 
 app.delete('/logout', (req, res) => {
     req.logOut((err) => {

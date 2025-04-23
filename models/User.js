@@ -21,6 +21,7 @@ const taskSchema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true } // Reference to the User model
 }, { collection: 'Tasks' });
 
+
 const ClassScheduleSchema = new mongoose.Schema({
     Title: { type: String, required: true },
     StartDate: { type: Date, required: true }, 
@@ -31,6 +32,7 @@ const ClassScheduleSchema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true } // Reference to the User model
 }, { collection: 'ClassSchedule' });
 
+
 const dailyTaskSchema = new mongoose.Schema({
     Title: { type: String, required: true }, // Title of the task
     taskId: { type: mongoose.Schema.Types.ObjectId, ref: 'Task', required: true }, // Reference to the original task
@@ -40,7 +42,6 @@ const dailyTaskSchema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true } // Reference to the user
 }, { collection: 'DailyTasks' });
 
-
 // Export both models
 const User = mongoose.model('User', userSchema);
 const Task = mongoose.model('Task', taskSchema);
@@ -48,3 +49,4 @@ const ClassSchedule = mongoose.model('ClassSchedule', ClassScheduleSchema);
 const DailyTask = mongoose.model('DailyTask', dailyTaskSchema);
 
 module.exports = { User, Task, ClassSchedule, DailyTask };
+
